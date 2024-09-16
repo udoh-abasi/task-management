@@ -42,3 +42,9 @@ footer#pageFooter {
 .animated {
   animation: bounce 4s infinite;
 }
+
+#homePageBg {
+  background: url(/Task.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}

@@ -37,11 +37,16 @@ const SignUp = () => {
 
   return (
     <main className="min-h-screen max-w-[1200px] mx-auto flex flex-col">
+      <div
+        id="homePageBg"
+        className="flex items-center justify-center h-[20vh]"
+      ></div>
+
       <section className="flex justify-center items-center flex-grow ">
         <div className="flex-[0_1_614px] relative">
           <h1
             id="gradient-text"
-            className="text-center text-3xl font-bold mt-16 uppercase"
+            className="text-center text-3xl font-bold mt-6 uppercase"
           >
             Sign Up
           </h1>
