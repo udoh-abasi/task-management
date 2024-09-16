@@ -36,7 +36,11 @@ const Login = () => {
       <div
         id="homePageBg"
         className="flex items-center justify-center h-[20vh]"
-      ></div>
+      >
+        <h1 className="text-center uppercase font-bold text-4xl min-[480px]:text-5xl min-[700px]:text-6xl drop-shadow-[2px_2px_#000 drop-shadow-[2px_2px_#fff]">
+          <strong id="gradient-text">Task Manager</strong>
+        </h1>
+      </div>
 
       <section className="flex justify-center items-center flex-grow">
         <div className="flex-[0_1_614px] relative">
