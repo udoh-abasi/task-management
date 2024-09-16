@@ -2,26 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+#gradient-text {
+  background: linear-gradient(
+    to right,
+    blue,
+    rgb(75, 0, 130),
+    rgb(168, 85, 247)
+  );
+  -webkit-background-clip: text; /* For Safari */
+  background-clip: text;
+  color: transparent; /* Hide the original text */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+footer#pageFooter {
+  background: url("/wave.svg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-10%);
+    animation-timing-function: linear;
+    opacity: 1;
   }
+  50% {
+    transform: none;
+    animation-timing-function: linear;
+    opacity: 0.4;
+  }
+}
+.animated {
+  animation: bounce 4s infinite;
 }
