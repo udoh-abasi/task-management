@@ -61,37 +61,8 @@ const getIndicatorColor = (
   return "text-red-600";
 };
 
-export const Dashboard = () => {
-  const [data, setData] = useState<TaskType[]>([
-    // {
-    //   _id: "jdh",
-    //   task: "Wash plate plate Wash plate plate Wash plate plate Wash plate plate Wash plate",
-    //   priority: "high",
-    //   status: "completed",
-    //   owner: "",
-    // },
-    // {
-    //   _id: "ho",
-    //   task: "Clean room",
-    //   priority: "low",
-    //   status: "inprogress",
-    //   owner: "",
-    // },
-    // {
-    //   _id: "dh",
-    //   task: "Iron cloth",
-    //   priority: "medium",
-    //   status: "inprogress",
-    //   owner: "",
-    // },
-    // {
-    //   _id: "nm",
-    //   task: "Polish show",
-    //   priority: "high",
-    //   status: "inprogress",
-    //   owner: "",
-    // },
-  ]);
+const Dashboard = () => {
+  const [data, setData] = useState<TaskType[]>([]);
 
   const router = useRouter();
 
