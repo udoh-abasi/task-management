@@ -46,8 +46,9 @@ const Login = () => {
             className="p-4"
             action={async (formData) => {
               if (!loginLoading) {
-                setLoginLoading(true);
-                setLoginError(false);
+                // Add await in front of the setStates,if not the state will not change, as the code will quickly go the 'loginUser' line
+                await setLoginError(false);
+                await setLoginLoading(true);
 
                 const loggedIn = await loginUser(formData);
 
@@ -71,6 +72,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
+                  setLoginError(false);
                 }}
                 className="h-10 rounded-xl ring-1 ring-purple-500 bg-blue-100 p-1 peer disabled:cursor-not-allowed disabled:bg-gray-600 disabled:ring-gray-600 disabled:text-gray-400"
               />
@@ -99,6 +101,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
+                  setLoginError(false);
                 }}
                 className="h-10 rounded-xl ring-1 ring-purple-500 bg-blue-100 p-1 peer disabled:cursor-not-allowed disabled:bg-gray-600 disabled:ring-gray-600 disabled:text-gray-400"
               />
@@ -119,7 +122,7 @@ const Login = () => {
             {loginError && (
               <p className="flex items-center text-sm text-red-600 font-bold mb-4 mt-[-12px]">
                 <AiFillWarning className="text-2xl" />
-                User not found.
+                User not found. Sign up instead
               </p>
             )}
 

@@ -3,7 +3,7 @@
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { CiLogin } from "react-icons/ci";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import Loader from "../(utils)/loader";
 import Link from "next/link";
 import { AiFillWarning } from "react-icons/ai";
@@ -18,7 +18,10 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [signUpLoading, setSignUpLoading] = useState(false);
+  // NOTE: We used useTransition here because it is the recommended way to handle states in form action.
+  // Using useState makes the state not update in time, before the form action is sent to the backend.
+  const [signUpLoading, setSignUpLoading] = useTransition();
+
   const [signUpError, setSignUpError] = useState(false);
 
   useEffect(() => {
@@ -47,17 +50,18 @@ const SignUp = () => {
             className="p-4"
             action={async (formData) => {
               if (!signUpLoading) {
-                setSignUpLoading(true);
-                setSignUpError(false);
+                // So, we pass in a function to start the transition. As long as the request is loading, 'signUpLoading' will be true. If the request stops loading, then 'signUpLoading' will be false
+                setSignUpLoading(async () => {
+                  await setSignUpError(false);
 
-                const userCreated = await signUpUser(formData);
+                  const userCreated = await signUpUser(formData);
 
-                if (userCreated.done) {
-                  router.push("/dashboard");
-                } else {
-                  setSignUpLoading(false);
-                  setSignUpError(true);
-                }
+                  if (userCreated.done) {
+                    router.push("/dashboard");
+                  } else {
+                    setSignUpError(true);
+                  }
+                });
               }
             }}
           >
